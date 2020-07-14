@@ -2,13 +2,13 @@
 
 Name:           libclc
 Version:        0.2.0
-Release:        14
+Release:        15
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
 URL:            https://libclc.llvm.org
 Source0:        https://github.com/llvm-mirror/%{name}/archive/1ecb16dd7d8b8e9151027faab996f27b2ac508e3/%{name}-git1ecb16d.tar.gz
 
-ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64
+ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 riscv64
 BuildRequires:  clang-devel libedit-devel llvm-devel >= 3.9 python zlib-devel
 
 %description
@@ -69,5 +69,8 @@ export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Jul 09 2020 whoisxxx <zhangxuzhou4@huawei.com> - 0.2.0-15
+- Add RISC-V arch
+
 * Tue Dec 31 2019 Jiangping Hu <hujiangping@huawei.com> - 0.2.0-14
 - Package init
