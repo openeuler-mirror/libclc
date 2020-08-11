@@ -2,7 +2,7 @@
 
 Name:           libclc
 Version:        0.2.0
-Release:        15
+Release:        16
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
 URL:            https://libclc.llvm.org
@@ -69,6 +69,9 @@ export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Aug 11 2020 yanan li <liyanan032@huawei.com> -0.2.0-16
+- Modify python  to python3
+
 * Thu Jul 09 2020 whoisxxx <zhangxuzhou4@huawei.com> - 0.2.0-15
 - Add RISC-V arch
 
