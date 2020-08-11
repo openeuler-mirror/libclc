@@ -1,0 +1,32 @@
+From a65d47ab65015fd4ffe75125853cee80b04dbbff Mon Sep 17 00:00:00 2001
+From: lyn1001 <thistleslyn@163.com>
+Date: Tue, 11 Aug 2020 13:59:21 +0800
+Subject: [PATCH] Modify python  to python3 with configure.py
+
+---
+ .../configure.py                                   |   4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/configure.py b/configure.py
+index dab5dc9..6663645 100755
+--- a/configure.py
++++ b/configure.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ from __future__ import print_function
+ 
+ def c_compiler_rule(b, name, description, compiler, flags):
+@@ -151,7 +151,7 @@ b.build(prepare_builtins, "LLVM_TOOL_LINK",
+ 
+ b.rule("PREPARE_BUILTINS", "%s -o $out $in" % prepare_builtins,
+        'PREPARE-BUILTINS $out')
+-b.rule("PYTHON_GEN", "python < $in > $out", "PYTHON_GEN $out")
++b.rule("PYTHON_GEN", "python3 < $in > $out", "PYTHON_GEN $out")
+ b.build('generic/lib/convert.cl', "PYTHON_GEN", ['generic/lib/gen_convert.py'])
+ 
+ manifest_deps = set([sys.argv[0], os.path.join(srcdir, 'build', 'metabuild.py'),
+
+-- 
+2.23.0
+

@@ -2,14 +2,14 @@
 
 Name:           libclc
 Version:        0.2.0
-Release:        15
+Release:        16
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
 URL:            https://libclc.llvm.org
 Source0:        https://github.com/llvm-mirror/%{name}/archive/1ecb16dd7d8b8e9151027faab996f27b2ac508e3/%{name}-git1ecb16d.tar.gz
-
+Patch0001:      0001-Modify-python-to-python3-with-configure.py.patch
 ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 riscv64
-BuildRequires:  clang-devel libedit-devel llvm-devel >= 3.9 python zlib-devel
+BuildRequires:  clang-devel libedit-devel llvm-devel >= 3.9 python3 zlib-devel
 
 %description
 bclc is an open source, BSD/MIT dual licensed implementation of the
@@ -69,6 +69,9 @@ export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Aug 11 2020 yanan li <liyanan032@huawei.com> -0.2.0-16
+- Modify python  to python3
+
 * Thu Jul 09 2020 whoisxxx <zhangxuzhou4@huawei.com> - 0.2.0-15
 - Add RISC-V arch
 
