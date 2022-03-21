@@ -1,15 +1,15 @@
 %global debug_package %{nil}
 
 Name:           libclc
-Version:        0.2.0
-Release:        16
+Version:        12.0.1
+Release:        1
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
 URL:            https://libclc.llvm.org
-Source0:        https://github.com/llvm-mirror/%{name}/archive/1ecb16dd7d8b8e9151027faab996f27b2ac508e3/%{name}-git1ecb16d.tar.gz
-Patch0001:      0001-Modify-python-to-python3-with-configure.py.patch
+Source0:        https://github.com/llvm/llvm-project/releases/download/llvmorg-%{version}/%{name}-%{version}.src.tar.xz
 ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 riscv64
 BuildRequires:  clang-devel libedit-devel llvm-devel >= 3.9 python3 zlib-devel
+BuildRequires:  cmake spirv-llvm-translator-tools
 
 %description
 bclc is an open source, BSD/MIT dual licensed implementation of the
@@ -46,29 +46,37 @@ The libclc-devel package contains libraries and header files for
 developing applications that use libclc.
 
 %prep
-%autosetup -n %{name}-1ecb16dd7d8b8e9151027faab996f27b2ac508e3 -p1
+%autosetup -n %{name}-%{version}.src -p1
 
 %build
 export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %set_build_flags
-./configure.py --prefix=%{_prefix} --libexecdir=%{_libdir}/clc/ --pkgconfigdir=%{_libdir}/pkgconfig/
+%cmake -DCMAKE_INSTALL_DATADIR:PATH=%{_libdir}
 
 %make_build
 
 %install
 %make_install
 
+%check
+make test
+
 %files
 %license LICENSE.TXT
 %doc README.TXT CREDITS.TXT
 %dir %{_libdir}/clc
 %{_libdir}/clc/*.bc
+%{_libdir}/clc/spirv-mesa3d-.spv
+%{_libdir}/clc/spirv64-mesa3d-.spv
 %{_includedir}/clc
 
 %files devel
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Fri Mar 18 2022 yaoxin <yaoxin30@huawei.com> - 12.0.1-1
+- Upgrade libclc to 12.0.1 to resolve compilation failures.
+
 * Tue Aug 11 2020 yanan li <liyanan032@huawei.com> -0.2.0-16
 - Modify python  to python3
 
