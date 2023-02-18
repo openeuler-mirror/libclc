@@ -2,12 +2,12 @@
 
 Name:           libclc
 Version:        12.0.1
-Release:        1
+Release:        2
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
 URL:            https://libclc.llvm.org
 Source0:        https://github.com/llvm/llvm-project/releases/download/llvmorg-%{version}/%{name}-%{version}.src.tar.xz
-ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 riscv64
+ExclusiveArch:  %{ix86} x86_64 %{arm} aarch64 riscv64 loongarch64
 BuildRequires:  clang-devel libedit-devel llvm-devel >= 3.9 python3 zlib-devel
 BuildRequires:  cmake spirv-llvm-translator-tools
 
@@ -74,6 +74,9 @@ make test
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Feb 16 2023 Wenlong Zhang<zhangwenlong@loongson.cn> - 12.0.1-2
+- Add loongarch64 support
+
 * Fri Mar 18 2022 yaoxin <yaoxin30@huawei.com> - 12.0.1-1
 - Upgrade libclc to 12.0.1 to resolve compilation failures.
 
