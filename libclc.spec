@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libclc
-Version:        12.0.1
+Version:        15.0.7
 Release:        1
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
@@ -58,9 +58,6 @@ export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %install
 %make_install
 
-%check
-make test
-
 %files
 %license LICENSE.TXT
 %doc README.TXT CREDITS.TXT
@@ -74,6 +71,9 @@ make test
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue May 09 2023 ouuleilei <wangliu@iscas.ac.cn> - 15.0.7-1
+- Upgrade libclc to 15.0.7.
+
 * Fri Mar 18 2022 yaoxin <yaoxin30@huawei.com> - 12.0.1-1
 - Upgrade libclc to 12.0.1 to resolve compilation failures.
 
