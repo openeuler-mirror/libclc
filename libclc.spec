@@ -58,6 +58,9 @@ export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %install
 %make_install
 
+%check
+make test ||:
+
 %files
 %license LICENSE.TXT
 %doc README.TXT CREDITS.TXT
