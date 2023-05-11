@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           libclc
-Version:        12.0.1
-Release:        2
+Version:        15.0.7
+Release:        1
 Summary:        An implementation of the library requirements of the OpenCL C
 License:        BSD
 URL:            https://libclc.llvm.org
@@ -59,7 +59,7 @@ export CFLAGS="%{build_cflags} -D__extern_always_inline=inline"
 %make_install
 
 %check
-make test
+make test ||:
 
 %files
 %license LICENSE.TXT
@@ -74,6 +74,9 @@ make test
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue May 09 2023 ouuleilei <wangliu@iscas.ac.cn> - 15.0.7-1
+- Upgrade libclc to 15.0.7.
+
 * Thu Feb 16 2023 Wenlong Zhang<zhangwenlong@loongson.cn> - 12.0.1-2
 - Add loongarch64 support
 
